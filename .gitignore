@@ -7,3 +7,4 @@ env/
 venv/
 ENV/
 .streamlit/secrets.toml
+test_bullet.pdf

@@ -46,6 +46,18 @@ with st.sidebar:
     st.markdown("### 📁 Data Source")
     uploaded = st.file_uploader("Upload your CSV / XLSX", type=["csv", "xlsx"])
 
+    sample_file_path = os.path.join(os.path.dirname(__file__), "data", "sample_student_records.csv")
+    if os.path.exists(sample_file_path):
+        with open(sample_file_path, "rb") as sf:
+            st.download_button(
+                label="📥 Download Sample CSV Template",
+                data=sf.read(),
+                file_name="sample_student_records.csv",
+                mime="text/csv",
+                use_container_width=True,
+                help="Click to download a ready-made sample CSV file for testing upload",
+            )
+
     if uploaded is not None:
         try:
             udf = load_uploaded_data(uploaded)
