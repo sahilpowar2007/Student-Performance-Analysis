@@ -194,9 +194,11 @@ else:
             return f"color:{COLORS['warning']};font-weight:700"
         return ""
 
-    styled = at_risk[display_cols].style.applymap(
-        _color_risk, subset=["risk_level"]
-    )
+    styler = at_risk[display_cols].style
+    if hasattr(styler, "map"):
+        styled = styler.map(_color_risk, subset=["risk_level"])
+    else:
+        styled = styler.applymap(_color_risk, subset=["risk_level"])
     st.dataframe(styled, use_container_width=True, hide_index=True)
 
     csv_risk = at_risk[display_cols].to_csv(index=False).encode("utf-8")

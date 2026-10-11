@@ -118,7 +118,6 @@ with r3:
 
 c1, c2 = st.columns(2)
 with c1:
-    st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
     st.markdown("#### Actual vs Predicted")
     fig_ap = px.scatter(x=reg_ev["y_test"], y=reg_ev["y_pred"],
                         labels={"x": "Actual", "y": "Predicted"},
@@ -129,10 +128,8 @@ with c1:
                                 name="Ideal"))
     fig_ap.update_layout(**get_plotly_layout())
     st.plotly_chart(fig_ap, use_container_width=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
 with c2:
-    st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
     st.markdown("#### Residuals")
     residuals = np.array(reg_ev["y_test"]) - np.array(reg_ev["y_pred"])
     fig_res = px.scatter(x=reg_ev["y_pred"], y=residuals,
@@ -141,7 +138,6 @@ with c2:
     fig_res.add_hline(y=0, line_dash="dash", line_color=COLORS["danger"])
     fig_res.update_layout(**get_plotly_layout())
     st.plotly_chart(fig_res, use_container_width=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # ═══════════════════════ CONFUSION MATRICES ══════════════════════════════
 st.markdown("---")
