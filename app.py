@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from src.auth import auth_page, logout
 from src.utils import apply_custom_css
